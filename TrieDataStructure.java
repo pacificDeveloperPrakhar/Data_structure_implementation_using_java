@@ -38,6 +38,17 @@ public class TrieDataStructure {
         }
         return pointer.isEnd;
     }
+    public boolean startsWith(String key)
+    {
+        TrieNode pointer=this.root;
+        for (int i = 0; i < key.length(); i++) {
+            int wInd=key.charAt(i)-'a';
+            if(pointer.children[wInd]==null)
+            return false;
+            pointer=pointer.children[wInd];
+        }
+        return true;
+    }
 
     public static void main(String[] args) {
         TrieDataStructure trie = new TrieDataStructure();
@@ -53,5 +64,7 @@ public class TrieDataStructure {
         System.out.println("Search 'bat': " + trie.search("bat"));     // Expected: true
         System.out.println("Search 'batman': " + trie.search("batman")); // Expected: false
         System.out.println("Search 'cat': " + trie.search("cat"));     // Expected: false
+        System.out.println("Search 'cat': " + trie.startsWith("ap"));     // Expected: false
+        System.out.println("Search 'cat': " + trie.startsWith("applet"));     // Expected: false
     }
 }
